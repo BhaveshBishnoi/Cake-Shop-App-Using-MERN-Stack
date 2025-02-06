@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-// import { authActions } from "../store/auth";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/auth";
 
 const LogIn = () => {
   const [values, setValues] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,16 +30,22 @@ const LogIn = () => {
         );
         console.log(response.data);
         alert("Login successful!");
-        navigate("/all-cakes"); // Redirect after successful login
 
-        //Store Auth Redux
-
-        const dispatch = useDispatch();
-
-        // for Local Storage Data
+        // Store data in localStorage
         localStorage.setItem("id", response.data.id);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("role", response.data.role);
+
+        // Update Redux auth state
+        dispatch(authActions.login());
+        dispatch(authActions.changeRole(response.data.role));
+
+        // Redirect based on user role
+        if (response.data.role === "admin") {
+          navigate("/dashboard");
+        } else {
+          navigate("/all-cakes");
+        }
       }
     } catch (error) {
       setError("Login failed. Please check your credentials and try again.");

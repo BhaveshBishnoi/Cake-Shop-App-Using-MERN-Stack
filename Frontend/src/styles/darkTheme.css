@@ -1,0 +1,53 @@
+/* Dark theme variables */
+:root[data-theme="dark"] {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --accent-color: #ff6b6b;
+  --border-color: #404040;
+  --card-bg: #333333;
+  --hover-bg: #404040;
+  --input-bg: #2d2d2d;
+  --input-text: #ffffff;
+  --button-bg: #ff6b6b;
+  --button-text: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Dark theme specific styles */
+[data-theme="dark"] {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+}
+
+[data-theme="dark"] table {
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] th,
+[data-theme="dark"] td {
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .hover-effect:hover {
+  background-color: var(--hover-bg);
+}
