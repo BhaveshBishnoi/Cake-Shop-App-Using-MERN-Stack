@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +23,7 @@ const GetCakeDetails = () => {
       const response = await axios.get(`http://localhost:4000/api/v1/get-cake-by-id/${id}`);
       setCake(response.data.Data);
       setLoading(false);
-    } catch (error) {
+    } catch  {
       setError("Failed to fetch cake details");
       setLoading(false);
     }
