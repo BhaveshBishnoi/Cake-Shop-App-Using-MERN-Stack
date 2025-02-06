@@ -1,21 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Check if user is already logged in from localStorage
+const token = localStorage.getItem('token');
+const role = localStorage.getItem('role');
+
+const initialState = {
+  isLoggedIn: !!token,
+  role: role || 'user'
+};
+
 const authSlice = createSlice({
   name: "auth",
-  initialState: { isLoggedIn: false, role: "user" },
+  initialState,
   reducers: {
     login(state) {
       state.isLoggedIn = true;
     },
     logout(state) {
       state.isLoggedIn = false;
+      state.role = 'user';
     },
     changeRole(state, action) {
-      const role = action.payload;
-      state.role = role;
+      state.role = action.payload;
     },
   },
 });
 
-export const AuthActions = authSlice.actions;
+export const authActions = authSlice.actions;
 export default authSlice.reducer;
